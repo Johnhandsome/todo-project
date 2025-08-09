@@ -47,6 +47,11 @@
     transition: border-color 0.3s ease, background 0.3s ease;
 }
 
+.form-input.invalid-input {
+    border-color: #e53935 !important;
+    background: #fff4f3;
+}
+
 .form-input:focus {
     border-color: #1976d2;
     background: #fff;
@@ -54,6 +59,13 @@
 
 .form-input::placeholder {
     color: #90caf9;
+}
+
+.error-message {
+    color: #e53935;
+    font-size: 13px;
+    margin: 6px 0 0 12px;
+    min-height: 18px;
 }
 
 .button-group {

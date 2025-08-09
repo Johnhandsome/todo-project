@@ -4,18 +4,30 @@
             Register Form
         </h2>
 
-        <form class="register-form">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form" autocomplete="off">
             <div class="form-group">
-                <input type="email" placeholder="Email" class="form-input" />
+                <input type="email" placeholder="Email" class="form-input" formControlName="email"
+                    [class.invalid-input]="email.invalid && (email.dirty || email.touched)" />
+
+                <div class="error-message" *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <span *ngIf="email.errors?.['required']">Email is required</span>
+                    <span *ngIf="email.errors?.['email']">Invalid email</span>
+                </div>
             </div>
 
             <div class="form-group">
-                <input type="password" placeholder="Password" class="form-input" />
+                <input type="password" placeholder="Password" class="form-input" formControlName="password"
+                    [class.invalid-input]="password.invalid && (password.dirty || password.touched)" />
+
+                <div class="error-message" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    <span *ngIf="password.errors?.['required']">Password is required</span>
+                    <span *ngIf="password.errors?.['minlength']">Password must be at least 6 characters</span>
+                </div>
             </div>
 
             <div class="button-group">
-                <button type="button" class="btn btn-cancel">Cancel</button>
-                <button type="submit" class="btn btn-register">Register</button>
+                <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+                <button type="submit" class="btn btn-register" [disabled]="registerForm.invalid">Register</button>
             </div>
         </form>
 
